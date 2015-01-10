@@ -1,0 +1,6 @@
+= form_for @broadcast do |f|
+  = f.text_field :title, :placeholder => 'Title of Oracle'
+  = f.datetime_field :date, :placeholder => 'Date to check'
+  = f.text_area :content, :placeholder => 'Content to check'
+  = f.submit
+  
