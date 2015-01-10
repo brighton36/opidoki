@@ -2,17 +2,18 @@
   .container
     .row
       .col-md-5
-        %h1.title.text-center OpiDoki
-        %h1.text-center "Truth Made Easy. Because fuck them, that's why."
+        %h1.text-center
+          .title
+            OpiDoki: 
+          Truth Made Easy. Because fuck them, that's why.
         =image_tag 'logo.png', :class => 'text-center'
+        %h1.text-center Evaluate. Broadcast. Win.
       .col-md-5.col-md-offset-1.form
-        = render :partial => 'form', :locals => {:broadcast => @broadcast}
+        = render partial: 'form', locals: {broadcast: @broadcast}
 %main
   .container
-    %h2 Existing Broadcasts
-    - @existing.each do |broadcast|
-      .row.col-md-7
-        = broadcast.label
-  .container
     %h2 Upcoming Broadcasts
-    %h3 #TODO
+    =render partial: 'table', locals: {broadcasts: @upcoming}
+  .container
+    %h2 Expired Broadcasts
+    =render partial: 'table', locals: {broadcasts: @expired}

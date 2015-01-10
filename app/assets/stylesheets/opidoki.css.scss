@@ -28,14 +28,15 @@ header{
   color: $white;
   background: image-url('header-bg.png') repeat;
   min-height: 400px;
-  padding: 80px 0 50px;
+  padding: 25px 0 50px;
   text-shadow: 1px 1px 1px $black!important;
   img{
-    width: 70%;
+    width: 75%;
+    margin: 15px 0 0;
     margin-left: 45px;
   }
   .title{
-    font-size: 52px;
+    display:inline-block;
     font-weight: 400;
   }
   .form{
@@ -97,6 +98,7 @@ header{
   }
 }
 main{
+  margin-top: 50px;
 }
 footer{
   color: $med-blue;

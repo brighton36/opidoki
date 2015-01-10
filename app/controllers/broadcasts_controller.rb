@@ -1,7 +1,8 @@
 class BroadcastsController < ApplicationController
   def index
     @broadcast = Broadcast.new
-    @existing = Broadcast.all
+    @upcoming = Broadcast.all
+    @expired = Broadcast.all
   end
 
   def create
