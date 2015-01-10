@@ -8,11 +8,9 @@ class Broadcast < ActiveRecord::Base
   MATCH_TYPE_JAVASCRIPT = 2
 
   INCLUDE_JQUERY_SCRIPT = <<eos
-// Init Jquery:
 var jq = document.createElement('script');
 jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
-$.noConflict();
 eos
 
   has_attached_file :execution_screenshot, 
@@ -61,10 +59,12 @@ eos
     # Get the screenshot:
     screen_tmp = Tempfile.new(['opiscreen', '.png'])
     screen_tmp.close
+    screen_tmp.open
     browser.screenshot.save screen_tmp.path
 
     # Mutate State:
     self.execution_return = execute_truther browser
+    self.btc_close_txid = 'TODO : From CP'
     self.is_closed = true
     self.closed_at = Time.now
     self.execution_screenshot = screen_tmp
@@ -86,10 +86,10 @@ eos
 
   def execute_truther(browser)
     if match_type == MATCH_TYPE_JAVASCRIPT
-      js = (self.include_jquery) ? INCLUDE_JQUERY_SCRIPT : String.new
-      js << match_javascript
+      browser.execute_script INCLUDE_JQUERY_SCRIPT if self.include_jquery
+      sleep 1
       
-      browser.execute_script js
+      browser.execute_script match_javascript
     elsif match_type == MATCH_TYPE_REGEX
       # TODO:
       nil

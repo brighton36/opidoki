@@ -65,7 +65,7 @@ RSpec.describe Broadcast do
     its(:btc_public_address) { should eq('1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs') }
     its(:btc_open_txid) { should be_a_kind_of String }
 
-    its(:persisted?) { should be_true }
+    its(:persisted?) { should eq(true) }
   end
 
   # Open Broadcast Fields:
@@ -90,10 +90,10 @@ RSpec.describe Broadcast do
 
     its(:execution_screenshot_file_name) { should be_a_kind_of(String) }
     its(:execution_screenshot_file_size) { should be > 0 }
-    its(:execution_screenshot_file_content_type) { should be('image/png') }
-    its(:execution_screenshot_file_updated_at) { should_not be_nil }
+    its(:execution_screenshot_content_type) { should eq('image/png') }
+    its(:execution_screenshot_updated_at) { should_not be_nil }
 
-    its(:persisted?) { should be_true }
+    its(:persisted?) { should eq(true) }
   end
 end
 
