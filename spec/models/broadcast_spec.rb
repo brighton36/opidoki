@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Broadcast do
-  let(:expired_jets_game) do 
-    broadcast = Broadcast.new(
+  def expired_jets_game
+    Broadcast.new(
       :label => 'NY Jets At Miami Dec 28 @ 1:05 EST. 1=Ny Jets Win; 2=Miami Win;',
 
        # Entered into the system at 12/20 at Noon:
@@ -34,71 +34,66 @@ RSpec.describe Broadcast do
         else if (visitor_score_score < home_score) { return 2; }
         // There was an error, or a tie. Unresolvable:
         else { return 0; }' )
-    broadcast.open_broadcast!
-    broadcast.close_broadcast!
-
-    puts "TODO: Execution Screenie" + broadcast.execution_screenshot.inspect
-    broadcast
   end
 
   context ".initialize" do
-    subject{expired_jets_game}
+    before(:all) { @broadcast = expired_jets_game }
+    subject{ @broadcast }
 
     # Initialzed Fields:
-    its(:label) { eq('NY Jets At Miami Dec 28 @ 1:05 EST. 1=Ny Jets Win; 2=Miami Win;') }
-    its(:is_opened) { eq(true) }
-    its(:is_closed) { eq(true) }
-    its(:is_funded) { eq(true) }
-    its(:url) { eq('http://sports.yahoo.com/nfl/teams/mia/schedule/') }
-    its(:creator) { eq('fatso') }
-    its(:match_type) { eq(Broadcast::MATCH_TYPE_JAVASCRIPT) }
-    its(:include_jquery ) { eq(true) }
-    its(:match_javascript ) { be_a_kind_of String }
-    its(:match_regex ) { be_a_kind_of String }
-    its(:closed_at) { be_a_kind_of Time }
-    its(:closes_at) { be_a_kind_of Time }
-    its(:creator) { eq('Fatso') }
-
-    # Calculated by init:
-    its(:short_label) { eq('NY Jets At Miami Dec 28 @ 1:05 EST. 1=Ny Jets ...') }
+    its(:label) { should eq('NY Jets At Miami Dec 28 @ 1:05 EST. 1=Ny Jets Win; 2=Miami Win;') }
+    its(:is_opened) { should eq(true) }
+    its(:is_closed) { should eq(true) }
+    its(:is_funded) { should eq(true) }
+    its(:url) { should eq('http://sports.yahoo.com/nfl/teams/mia/schedule/') }
+    its(:creator) { should eq('fatso') }
+    its(:match_type) { should eq(Broadcast::MATCH_TYPE_JAVASCRIPT) }
+    its(:include_jquery ) { should eq(true) }
+    its(:match_javascript ) { should be_a_kind_of String }
+    its(:match_regex ) { should be_nil }
+    its(:closes_at) { should be_a_kind_of Time }
+    its(:creator) { should eq('fatso') }
   end
+
 
   # Open Broadcast Fields:
   context ".open_broadcast!" do
-    subject{ expired_jets_game.tap{|b| b.open_broadcast! } }
+    before(:all) { @broadcast = expired_jets_game.tap{|b| b.open_broadcast! } }
+    subject{ @broadcast }
 
-    its(:opened_at) { be_a_kind_of Time }
-    its(:btc_public_address) { eq('1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs') }
-    its(:btc_open_txid) { be_a_kind_of String }
+    its(:opened_at) { should be_a_kind_of Time }
+    its(:btc_public_address) { should eq('1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs') }
+    its(:btc_open_txid) { should be_a_kind_of String }
 
-    its(:persisted?) { be_true }
+    its(:persisted?) { should be_true }
   end
 
   # Open Broadcast Fields:
   context ".close_broadcast!" do
-    subject{
-      broadcast = expired_jets_game
-      broadcast.close_broadcast!
-    }
+    before(:all) do
+      @broadcast = expired_jets_game.tap{|b| 
+        b.open_broadcast!
+        b.close_broadcast!
+      }
+    end
+    subject{ @broadcast }
+
+    its(:closed_at) { should be_a_kind_of Time }
 
     # Close Broadcast Fields:
-    its(:btc_close_txid) { be_a_kind_of String }
-    its(:closed_at) { be_a_kind_of Time }
+    its(:btc_close_txid) { should be_a_kind_of String }
+    its(:closed_at) { should be_a_kind_of Time }
 
     # Jets (the away/visitor team) Won:
-    its(:execution_return) { 1 }
-    its(:execution_title) { 'Miami Dolphins on Yahoo! Sports - News, Scores, Standings, Rumors, Fantasy Games' }
+    its(:execution_return) { should eq(1) }
+    its(:execution_title) { should eq('Miami Dolphins on Yahoo! Sports - News, Scores, Standings, Rumors, Fantasy Games') }
 
-    # TODO:  
-    #its('execution_screenshot'
-    #it { should validate_attachment_presence(:avatar) }
-    #it { should validate_attachment_content_type(:avatar).
-    #allowing('image/png', 'image/gif').
-    #rejecting('text/plain', 'text/xml') }
-    #it { should validate_attachment_size(:avatar).
-    #less_than(2.megabytes) }
+    its(:execution_screenshot_file_name) { should be_a_kind_of(String) }
+    its(:execution_screenshot_file_size) { should be > 0 }
+    its(:execution_screenshot_file_content_type) { should be('image/png') }
+    its(:execution_screenshot_file_updated_at) { should_not be_nil }
 
-    its(:persisted?) { be_true }
+    its(:persisted?) { should be_true }
   end
 end
 

@@ -42,35 +42,56 @@ eos
   end
 
   def open_broadcast!
-    # TODO: 
+    # TODO: CP Broadcast
+    self.btc_open_txid = 'TODO : From CP'
+    self.save!
   end
 
   # Runs the browser, Executes truth, records into the blockchain, marks closed
   # saves
   def close_broadcast!
+    # TODO: Raise an error if we're not opened?
+
+    # Open the Browser:
     browser = Watir::Browser.new :phantomjs
     browser.goto url
 
-    screen_tmp = Tempfile.new('opiscreen')
+    # Get the screenshot:
+    screen_tmp = Tempfile.new(['opiscreen', '.png'])
     screen_tmp.close
-
     browser.screenshot.save screen_tmp.path
-    screen_tmp.open
 
-    execution_screenshot = screen_tmp
-    browser_execution_title = browser.title
-    is_closed = true
+    # Mutate State:
+    self.execution_return = execute_truther browser
+    self.is_closed = true
+    self.closed_at = Time.now
+    self.execution_screenshot = screen_tmp
+    self.execution_title = browser.title
 
     # TODO : Cp Broadcast
+    
+    # Persist the model:
+    self.save!
 
-    if match_type == MATCH_TYPE_JAVASCRIPT
-      browser_return = browser.execute_script match_javascript
-    elsif match_type == MATCH_TYPE_REGEX
-      nil
-      # TODO:
-    end
-
-    # todo: Save!
-
+    ensure
+      if screen_tmp
+        screen_tmp.close
+        screen_tmp.unlink
+      end
   end
+
+  private
+
+  def execute_truther(browser)
+    if match_type == MATCH_TYPE_JAVASCRIPT
+      js = (self.include_jquery) ? INCLUDE_JQUERY_SCRIPT : String.new
+      js << match_javascript
+      
+      browser.execute_script js
+    elsif match_type == MATCH_TYPE_REGEX
+      # TODO:
+      nil
+    end
+  end
+
 end

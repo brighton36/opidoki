@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150110134641) do
     t.string   "short_label"
     t.string   "creator"
     t.string   "btc_public_address"
+    t.string   "btc_open_txid"
+    t.string   "btc_close_txid"
     t.integer  "match_type"
     t.text     "url"
     t.text     "match_javascript"
