@@ -5,5 +5,7 @@ qr code
 boot
 
  
+* Would be nice to have a bet-xcpesque json Broadcast::show
+  * would be nice to have a shorturl too
 
 LOW PRIORITY: Moar Seed examples (see the seeds files for what I'm thinking)

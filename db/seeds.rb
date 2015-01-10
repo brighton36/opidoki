@@ -40,6 +40,14 @@ Broadcast.new(
 # Upcoming Broadcasts:
 Broadcast.new(
   :label => 'Dallas Cowboys At Green Bay Jan 11 @ 1:05 EST. 1=Dallas Win; 2=Greenbay Win;',
+  
+  # Mark it open:
+  :is_opened => true,
+  :is_funded => true,
+
+  # Closes 6 hours after the start of the game:
+  :closes_at => DateTime.new(2015,1,11,19,05,00,'-5'),
+
   :url => 'http://sports.yahoo.com/nfl/teams/dal/schedule/',
   :creator => 'lil_douchlet',
   :match_type => Broadcast::MATCH_TYPE_JAVASCRIPT,
@@ -59,6 +67,14 @@ Broadcast.new(
 
 Broadcast.new(
   :label => 'Indianapolis At Denver Jan 11 @ 4:40 EST. 1=Indianapolis Win; 2=Denver;',
+  
+  # Mark it open:
+  :is_opened => true,
+  :is_funded => true,
+
+  # Closes 6 hours after the start of the game:
+  :closes_at => DateTime.new(2015,1,11,22,40,00,'-5'),
+
   :url => 'http://sports.yahoo.com/nfl/teams/ind/schedule/',
   :creator => 'lil_douchlet',
   :match_type => Broadcast::MATCH_TYPE_JAVASCRIPT,
