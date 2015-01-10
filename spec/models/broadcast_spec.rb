@@ -32,6 +32,10 @@ RSpec.describe Broadcast do
         // There was an error, or a tie. Unresolvable:
         else { return 0; }' )
   end
+  
+  context "defaults" do 
+    pending
+  end
 
   context ".initialize" do
     before(:all) { @broadcast = expired_jets_game }

@@ -13,7 +13,7 @@ class CreateBroadcasts < ActiveRecord::Migration
       t.string :btc_open_txid
       t.string :btc_close_txid
 
-      t.integer :match_type
+      t.integer :match_type, :default => Broadcast::MATCH_TYPE_JAVASCRIPT
 
       t.text :url
       t.text :match_javascript
@@ -23,10 +23,10 @@ class CreateBroadcasts < ActiveRecord::Migration
       t.text :execution_title
       t.attachment :execution_screenshot
 
-      t.boolean :include_jquery
-      t.boolean :is_opened
-      t.boolean :is_closed
-      t.boolean :is_funded
+      t.boolean :include_jquery, :default => true
+      t.boolean :is_opened, :default => false
+      t.boolean :is_closed, :default => false
+      t.boolean :is_funded, :default => false
 
       t.timestamps
     end
