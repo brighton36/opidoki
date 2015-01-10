@@ -1,3 +1,5 @@
+require 'watir-webdriver'
+
 class Broadcast < ActiveRecord::Base
   validates :label, :closes_at, presence: true
 
@@ -13,6 +15,15 @@ document.getElementsByTagName('head')[0].appendChild(jq);
 $.noConflict();
 eos
 
+  has_attached_file :execution_screenshot, 
+    :styles => { :medium => "300x300>", :thumb => "100x100>" }, 
+    :default_url => "/images/:style/missing.png"
+
+  validates_attachment_content_type :execution_screenshot, 
+    :content_type => /\Aimage\/.*\Z/
+
+  # TODO : validate_required fields
+
   # The address has sufficient balance to open/close:
   scope :funded, lambda{ where( 'is_funded = ?', true) }
 
@@ -27,4 +38,62 @@ eos
 
   # These have succesfully completed
   scope :expired, lambda{ |now| funded.closed.where('closes_at <= ?', now) }
+
+  def short_label
+    label[0...46]+'...'
+  end
+
+  def open_broadcast!
+    # TODO: CP Broadcast
+    self.btc_open_txid = 'TODO : From CP'
+    self.save!
+  end
+
+  # Runs the browser, Executes truth, records into the blockchain, marks closed
+  # saves
+  def close_broadcast!
+    # TODO: Raise an error if we're not opened?
+
+    # Open the Browser:
+    browser = Watir::Browser.new :phantomjs
+    browser.goto url
+
+    # Get the screenshot:
+    screen_tmp = Tempfile.new(['opiscreen', '.png'])
+    screen_tmp.close
+    browser.screenshot.save screen_tmp.path
+
+    # Mutate State:
+    self.execution_return = execute_truther browser
+    self.is_closed = true
+    self.closed_at = Time.now
+    self.execution_screenshot = screen_tmp
+    self.execution_title = browser.title
+
+    # TODO : Cp Broadcast
+    
+    # Persist the model:
+    self.save!
+
+    ensure
+      if screen_tmp
+        screen_tmp.close
+        screen_tmp.unlink
+      end
+  end
+
+  private
+
+  def execute_truther(browser)
+    if match_type == MATCH_TYPE_JAVASCRIPT
+      js = (self.include_jquery) ? INCLUDE_JQUERY_SCRIPT : String.new
+      js << match_javascript
+      
+      browser.execute_script js
+    elsif match_type == MATCH_TYPE_REGEX
+      # TODO:
+      nil
+    end
+  end
+
 end
