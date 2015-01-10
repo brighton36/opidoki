@@ -1,0 +1,26 @@
+%header#top.navbar.navbar-static-top.bs-docs-nav{:role => "banner"}
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => ".bs-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "../"} Bootstrap
+    %nav.collapse.navbar-collapse.bs-navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{:href => "../getting-started/"} Getting started
+        %li
+          %a{:href => "../css/"} CSS
+        %li
+          %a{:href => "../components/"} Components
+        %li
+          %a{:href => "../javascript/"} JavaScript
+        %li
+          %a{:href => "../customize/"} Customize
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{:href => "http://expo.getbootstrap.com", :onclick => "ga('send', 'event', 'Navbar', 'Community links', 'Expo');"} Expo
+        %li
+          %a{:href => "http://blog.getbootstrap.com", :onclick => "ga('send', 'event', 'Navbar', 'Community links', 'Blog');"} Blog
