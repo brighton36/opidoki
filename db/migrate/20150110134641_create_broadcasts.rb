@@ -10,6 +10,8 @@ class CreateBroadcasts < ActiveRecord::Migration
       t.string :short_label
       t.string :creator
       t.string :btc_public_address
+      t.string :btc_open_txid
+      t.string :btc_close_txid
 
       t.integer :match_type
 
@@ -17,6 +19,9 @@ class CreateBroadcasts < ActiveRecord::Migration
       t.text :match_javascript
       t.text :match_regex
 
+      t.integer :execution_return
+      t.text :execution_title
+      t.attachment :execution_screenshot
 
       t.boolean :include_jquery
       t.boolean :is_opened

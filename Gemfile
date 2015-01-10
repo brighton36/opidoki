@@ -54,3 +54,8 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem "rspec-rails", :group => [:development, :test]
+gem "rspec-its", :group => [:development, :test]
+
+gem "watir"
+gem 'paperclip'
