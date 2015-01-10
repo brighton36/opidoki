@@ -3,6 +3,9 @@ class CreateBroadcasts < ActiveRecord::Migration
     create_table :broadcasts do |t|
       t.datetime :closes_at
 
+      t.datetime :opened_at
+      t.datetime :closed_at
+
       t.string :label
       t.string :short_label
       t.string :creator

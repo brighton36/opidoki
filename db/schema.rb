@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20150110134641) do
 
   create_table "broadcasts", force: true do |t|
     t.datetime "closes_at"
+    t.datetime "opened_at"
+    t.datetime "closed_at"
     t.string   "label"
     t.string   "short_label"
     t.string   "creator"
