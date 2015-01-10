@@ -3,6 +3,7 @@
   .input-group
     = f.text_field :label, :placeholder => 'Title of broadcast', :class => 'form-control'
     = f.datetime_field :closes_at, :placeholder => 'Date to be closed', :class => 'form-control'
+    = select_tag "closes_at[zone]", options_for_select(ActiveSupport::TimeZone.all.collect {|p| [ p.to_s, p.utc_offset ]}), :class => 'form-control'
     = f.text_field :url, :placeholder => 'Url', :class => 'form-control'
 
     %div{:role => 'tabpanel'}
@@ -22,7 +23,7 @@
           = f.label :include_jquery, 'Include JQuery'
 
     .row
-      = f.submit 'Create', :class => 'btn-lg btn-primary'
+      = f.submit 'Create', :class => 'btn-lg btn-primary submit'
 
 #errors-modal.modal.fade{:role => 'dialog', :aria_labelledby => 'Your Truth is flawed', :aria_hidden => 'true'}
   .modal-dialog

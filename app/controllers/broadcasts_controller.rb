@@ -12,7 +12,7 @@ class BroadcastsController < ApplicationController
       logger.info @broadcast.inspect
 
       render :json => {
-        address: @broadcast.btc_broadcast_address.to_json,
+        address: '18Vm8AvDr9Bkvij6UfVR7MerCyrz3KS3h4' #@broadcast.btc_broadcast_address.to_json,
       }, status: 200
     rescue ActiveRecord::RecordInvalid => invalid
         render :json => {
