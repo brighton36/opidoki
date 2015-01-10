@@ -10,9 +10,6 @@ RSpec.describe Broadcast do
 
       # User says to close 6 hours after the game:
       :closes_at => DateTime.new(2014,12,28,19,05,00,'-5'),
-      
-      # Baller status:
-      :btc_public_address => '1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs',
 
       # Mark it complete:
       :is_opened => true,
@@ -62,7 +59,7 @@ RSpec.describe Broadcast do
     subject{ @broadcast }
 
     its(:opened_at) { should be_a_kind_of Time }
-    its(:btc_public_address) { should eq('1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs') }
+    its(:btc_public_address) { should be_a_kind_of String }
     its(:btc_open_txid) { should be_a_kind_of String }
 
     its(:persisted?) { should eq(true) }
