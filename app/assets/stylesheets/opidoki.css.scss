@@ -10,8 +10,27 @@ $light-blue: #4FA8C7;
 $gray: #999999;
 $white: #fff;
 
+nav{
+  background-color: $white;
+  color: $light-blue;
+  a{color:$light-blue;}
+}
 header{
-  background-color: $light-blue;
   color: $white;
-  a{color:$white;}
+  background: image-url('header-bg.png') repeat;
+  min-height: 400px;
+  padding: 100px 0 50px;
+  .form{
+    input, textarea{
+      border-radius: 6px!important;
+      margin: 10px 0;
+    }
+    .btn-lg{
+      padding: 8px 30px;
+    }
+  }
+}
+main{
+}
+footer{
 }

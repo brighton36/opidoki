@@ -2,14 +2,15 @@
 %html
   %head
     %title Opidoki
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %header#top.navbar.navbar-static-top.bs-docs-nav{:role => "banner"}
+    %nav#top.navbar.navbar-fixed-top.bs-docs-nav{:role => "banner"}
       = render :partial => 'nav'
     %main
-      .container
-        = yield
+      = yield
     %footer
       = render :partial => 'footer'
+    = javascript_include_tag "application", "data-turbolinks-track" => true

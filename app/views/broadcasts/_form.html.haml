@@ -1,0 +1,11 @@
+= form_for @broadcast do |f|
+  .input-group
+    = f.text_field :label, :placeholder => 'Title of Oracle', :class => 'form-control'
+    = f.datetime_field :closes_at, :placeholder => 'Date to check', :class => 'form-control'
+    = f.text_field :url, :placeholder => 'Url to page', :class => 'form-control'
+
+    = f.text_area :match_javascript, :placeholder => 'Javascript', :class => 'form-control'
+
+    = f.text_area :match_regex, :placeholder => 'Regex', :class => 'form-control'
+
+    = f.submit 'Create', :class => 'btn-lg btn-primary pull-right'

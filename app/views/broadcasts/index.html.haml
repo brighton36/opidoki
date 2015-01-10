@@ -1,6 +1,9 @@
-= form_for @broadcast do |f|
-  = f.text_field :title, :placeholder => 'Title of Oracle'
-  = f.datetime_field :date, :placeholder => 'Date to check'
-  = f.text_area :content, :placeholder => 'Content to check'
-  = f.submit
-  
+%header
+  .container
+    .row
+      .col-md-4
+        %h1 "The only application to facilitate easy GUI-based oracle broadcasts for the muggles."
+      .col-md-6.col-md-offset-1.form
+        = render :partial => 'form', :locals => {:broadcast => @broadcast}
+%main
+  %h2 #TODO: listings
