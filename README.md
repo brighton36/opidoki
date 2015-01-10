@@ -18,3 +18,4 @@ By utilizing the Counterparty and Bitcoin networks, counterparty risk for all
 participants is nil, and regulatory encumberances are unenforceable, and moot.
 
 ##Party On!
+![Serious Business](http://i.guim.co.uk/static/w-620/h--/q-95/sys-images/Travel/Pix/gallery/2010/10/7/1286466756423/DAZED--CONFUSED--006.jpg)
