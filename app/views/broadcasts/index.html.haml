@@ -5,7 +5,7 @@
         %h1.text-center
           .title
             OpiDoki: 
-          Truth Made Easy. Because fuck them, that's why.
+          Truth Made Easy. Because fuck the gods, that's why.
         =image_tag 'logo.png', :class => 'text-center'
         %h1.text-center Evaluate. Broadcast. Win.
       .col-md-5.col-md-offset-1.form
@@ -14,8 +14,10 @@
             .front
               = render partial: 'form', locals: {broadcast: @broadcast}
             .back
-              %h1 Fund your Truth
-              %h4 18Vm8AvDr9Bkvij6UfVR7MerCyrz3KS3h4
+              %h1.text-center Fund your Truth
+              .qrcode-container
+                #qrcode
+              %h3.text-center#address 18Vm8AvDr9Bkvij6UfVR7MerCyrz3KS3h4
 %main
   .container
     %h2 Upcoming Broadcasts
@@ -23,3 +25,5 @@
   .container
     %h2 Expired Broadcasts
     =render partial: 'table', locals: {broadcasts: @expired}
+
+= render partial: 'error_modal'

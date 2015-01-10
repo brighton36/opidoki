@@ -39,6 +39,12 @@ header{
     display:inline-block;
     font-weight: 400;
   }
+  .qrcode-container{
+    background-color: $white;
+    border-radius: 10px;
+    padding: 10px 0px 10px 10px;
+    margin: 20px;
+  }
   .form{
     select, input, textarea{
       border-radius: 6px!important;
@@ -106,6 +112,7 @@ footer{
   margin: 50px 0 0;
   padding: 10px 0 3px;
 }
+
 .modal-content{
   border-radius: 10px;
   .modal-header{
@@ -113,11 +120,17 @@ footer{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
+  .modal-title{
+    font-weight:600!important;
+  }
 }
 #errors-modal{
+  color: $white;
   .modal-content{
     background-color: #9C3030;
     .modal-header{
+      color: $white;
+      font-weight:600!important;
       background-color: #2C070D;
     }
   }
