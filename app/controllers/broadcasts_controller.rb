@@ -1,6 +1,7 @@
 class BroadcastsController < ApplicationController
   def index
     @broadcast = Broadcast.new
+    @existing = Broadcast.all
   end
 
   def create

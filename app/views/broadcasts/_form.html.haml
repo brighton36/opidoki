@@ -1,11 +1,25 @@
 = form_for @broadcast do |f|
+  %h1 Create a Truth
   .input-group
     = f.text_field :label, :placeholder => 'Title of Oracle', :class => 'form-control'
     = f.datetime_field :closes_at, :placeholder => 'Date to check', :class => 'form-control'
     = f.text_field :url, :placeholder => 'Url to page', :class => 'form-control'
 
-    = f.text_area :match_javascript, :placeholder => 'Javascript', :class => 'form-control'
+    %div{:role => 'tabpanel'}
+      %ul.nav.nav-tabs{:role => 'tablist'}
+        %li.active{:role => 'presentation'}
+          %a{:href => '#js', :role => 'tab', :data => {:toggle => 'tab'}} Javascript
+        %li{:role => 'presentation'}
+          %a{:href => '#regex', :role => 'tab', :data => {:toggle => 'tab'}} RegEx
 
-    = f.text_area :match_regex, :placeholder => 'Regex', :class => 'form-control'
+      .tab-content.clearfix
+        #js.tab-pane.active{:role => 'tabpanel'}
+          = f.text_area :match_javascript, :placeholder => 'Javascript', :rows => '7', :class => 'form-control'
+        #regex.tab-pane{:role => 'tabpanel'}
+          = f.text_area :match_regex, :placeholder => 'Regex', :class => 'form-control'
+        .include-jquery
+          = f.check_box :include_jquery
+          = f.label :include_jquery, 'Include JQuery'
 
-    = f.submit 'Create', :class => 'btn-lg btn-primary pull-right'
+    .row
+      = f.submit 'Create', :class => 'btn-lg btn-primary'

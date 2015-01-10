@@ -1,9 +1,18 @@
 %header
   .container
     .row
-      .col-md-4
-        %h1 "The only application to facilitate easy GUI-based oracle broadcasts for the muggles."
-      .col-md-6.col-md-offset-1.form
+      .col-md-5
+        %h1.title.text-center OpiDoki
+        %h1.text-center "Truth Made Easy. Because fuck them, that's why."
+        =image_tag 'logo.png', :class => 'text-center'
+      .col-md-5.col-md-offset-1.form
         = render :partial => 'form', :locals => {:broadcast => @broadcast}
 %main
-  %h2 #TODO: listings
+  .container
+    %h2 Existing Broadcasts
+    - @existing.each do |broadcast|
+      .row.col-md-7
+        = broadcast.label
+  .container
+    %h2 Upcoming Broadcasts
+    %h3 #TODO
