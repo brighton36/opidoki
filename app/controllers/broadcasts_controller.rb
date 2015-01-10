@@ -6,12 +6,18 @@ class BroadcastsController < ApplicationController
   end
 
   def create
+    #TODO: finish closes_at with time zones
     begin
-      @broadcast = Broadcast.new(broadcast_params).save!
+
+      #NOTE: Remove this
+      @broadcast = Broadcast.new(broadcast_params)
+      @broadcast.btc_public_address = 'mh6SNGA3HtusbeysegUFDQxBAJiRNBuopZ'
+      @broadcast.save!
+
       logger.info @broadcast.inspect
 
       render :json => {
-        address: 'mh6SNGA3HtusbeysegUFDQxBAJiRNBuopZ', #@broadcast.btc_broadcast_address.to_json,
+        broadcast:  @broadcast,
         amount: "0.0036", # in BTC $1 USD
         label: 'opidoki'
       }, status: 200
@@ -25,6 +31,16 @@ class BroadcastsController < ApplicationController
   end
 
   def show
+    @broadcast = Broadcast.find_by_id params[:id]
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => {
+          broadcast: @broadcast.to_json
+        }
+      }
+    end
   end
 
   private

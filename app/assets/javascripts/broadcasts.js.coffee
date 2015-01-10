@@ -3,17 +3,19 @@ $('document').ready ->
 
   $('#new_broadcast').ajaxForm({
     dataType: 'json',
+    beforeSubmit: ->
+      $('.fa-spinner').show()
     error: (xhr, xhrStatus) ->
+      $('.fa-spinner').hide()
       $('#errors-modal .modal-body').html('')
       response = jQuery.parseJSON(xhr.responseText)
       $('#errors-modal .modal-body').append(response.errors)
       $('#errors-modal').modal()
       false
     success: (plainObject, xhrStatus, xhr) ->
-      console.log 'success'
       response = jQuery.parseJSON(xhr.responseText)
 
-      address = response.address
+      address = response.broadcast.btc_public_address
       amount = response.amount
       label = response.label
 
@@ -28,7 +30,10 @@ $('document').ready ->
           text: "bitcoin:#{address}?amount=#{amount}&label=#{label}"
 
         # Flip animation
-        $('.flip-container').addClass('hover')
+        setTimeout ( ->
+          $('.fa-spinner').hide()
+          $('.flip-container').addClass('hover')
+        ), 1500
       else
         $('#errors-modal .modal-body').html('')
         $('#errors-modal .modal-body').append('Error creating QR code')
