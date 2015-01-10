@@ -1,6 +1,8 @@
 $('document').ready ->
   @errorModal = $('#errors-modal')
-  
+
+  $("#broadcast_closes_at").datetimepicker format: "yyyy-mm-dd hh:ii"
+
   $('#new_broadcast').ajaxForm({
     dataType: 'json',
     error: (xhr, xhrStatus) ->
@@ -12,14 +14,7 @@ $('document').ready ->
     success: (plainObject, xhrStatus, xhr) ->
       console.log 'success'
       response = jQuery.parseJSON(xhr.responseText)
-      console.log response
+      console.log response.address
+      $('.flip-container').addClass('hover')
       false
   })
-
-showRequest = (formData, jqForm, options) ->
-  queryString = $.param(formData)
-  lert "About to submit: \n\n" + queryString
-  
-  # here we could return false to prevent the form from being submitted; 
-  # returning anything other than false will allow the form submit to continue 
-  true

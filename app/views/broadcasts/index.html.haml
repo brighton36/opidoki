@@ -9,7 +9,13 @@
         =image_tag 'logo.png', :class => 'text-center'
         %h1.text-center Evaluate. Broadcast. Win.
       .col-md-5.col-md-offset-1.form
-        = render partial: 'form', locals: {broadcast: @broadcast}
+        .flip-container
+          .flipper
+            .front
+              = render partial: 'form', locals: {broadcast: @broadcast}
+            .back
+              %h1 Fund your Truth
+              %h4 18Vm8AvDr9Bkvij6UfVR7MerCyrz3KS3h4
 %main
   .container
     %h2 Upcoming Broadcasts
