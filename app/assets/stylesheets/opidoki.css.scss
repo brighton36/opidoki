@@ -54,6 +54,7 @@ header{
       margin-left: 15px;
     }
     .include-jquery{
+      text-shadow:none;
       color:$gray;
     }
     .nav-tabs{
@@ -104,4 +105,20 @@ footer{
   color: $med-blue;
   margin: 50px 0 0;
   padding: 10px 0 3px;
+}
+.modal-content{
+  border-radius: 10px;
+  .modal-header{
+    font-weight: 600;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+#errors-modal{
+  .modal-content{
+    background-color: #9C3030;
+    .modal-header{
+      background-color: #2C070D;
+    }
+  }
 }

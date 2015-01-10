@@ -16,10 +16,19 @@
         #js.tab-pane.active{:role => 'tabpanel'}
           = f.text_area :match_javascript, :placeholder => 'Javascript', :rows => '6', :class => 'form-control'
         #regex.tab-pane{:role => 'tabpanel'}
-          = f.text_area :match_regex, :placeholder => 'Regex', :class => 'form-control'
+          = f.text_area :match_regex, :placeholder => 'Regex', :rows => '6', :class => 'form-control'
         .include-jquery
           = f.check_box :include_jquery
           = f.label :include_jquery, 'Include JQuery'
 
     .row
       = f.submit 'Create', :class => 'btn-lg btn-primary'
+
+#errors-modal.modal.fade{:role => 'dialog', :aria_labelledby => 'Your Truth is flawed', :aria_hidden => 'true'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Your Truth is flawed!
+      .modal-body

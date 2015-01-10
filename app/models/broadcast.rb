@@ -1,4 +1,6 @@
 class Broadcast < ActiveRecord::Base
+  validates :label, :closes_at, presence: true
+
   # NOTE: We should probably be using an enum here, but it's a hackathon
   MATCH_TYPE_REGEX = 1
   MATCH_TYPE_JAVASCRIPT = 2
