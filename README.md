@@ -23,5 +23,5 @@ risk for all participants is nil, and regulatory encumbrances are unenforceable,
 and moot.
 
 ##Party On!
-Don't be a square. Lose your center. Fight for your right to party!
+Lose your center. Free your mind. Fight for your right to party!
 ![Serious Business](http://i.guim.co.uk/static/w-620/h--/q-95/sys-images/Travel/Pix/gallery/2010/10/7/1286466756423/DAZED--CONFUSED--006.jpg)
