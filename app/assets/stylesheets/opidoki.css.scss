@@ -9,9 +9,116 @@ $light-blue: #4FA8C7;
 
 $gray: #999999;
 $white: #fff;
+$black: #000;
 
+.navbar{
+  border-bottom: 4px solid $med-blue;
+}
+nav{
+  background-color: $white;
+  color: $light-blue;
+  a{color:$light-blue;}
+  .navbar-brand{color:$med-blue}
+  .nav > li > a:hover, .nav > li > a:focus {
+    background-color: $light-blue;
+    color: $white;
+  }
+}
 header{
-  background-color: $light-blue;
   color: $white;
-  a{color:$white;}
+  background: image-url('header-bg.png') repeat;
+  min-height: 400px;
+  padding: 25px 0 50px;
+  text-shadow: 1px 1px 1px $black!important;
+  img{
+    width: 75%;
+    margin: 15px 0 0;
+    margin-left: 45px;
+  }
+  .title{
+    display:inline-block;
+    font-weight: 400;
+  }
+  .form{
+    input, textarea{
+      border-radius: 6px!important;
+      margin: 10px 0;
+    }
+    .btn-lg{
+      color: #FFF;
+      background-color: #569E3D;
+      background-image: linear-gradient(#79D858, #569E3D);
+      background-repeat: repeat-x;
+      border-color: #4A993E;
+      padding: 8px 40px;
+      margin-left: 15px;
+    }
+    .include-jquery{
+      text-shadow:none;
+      color:$gray;
+    }
+    .nav-tabs{
+      border:none;
+      li{
+        background-color: $light-blue;
+        color: $white;
+        margin-top:10px;
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        a{
+          color: $white;
+          text-shadow:none;
+          &:hover{
+            border-color: $light-blue;
+            border-top-left-radius:10px;
+            border-top-right-radius:10px;
+            background-color: $light-blue;
+          }
+        }
+      }
+      .active{
+        a{
+          background-color: $white;
+          color: $light-blue;
+          border-top-left-radius:10px;
+          border-top-right-radius:10px;
+          &:hover{
+            background-color: $white;
+          }
+        }
+      }
+          }
+
+    .tab-content{
+      background-color: #fff;
+      padding: 0 10px 10px;
+      border-radius:10px;
+      border-top-left-radius: 0;
+    }
+
+  }
+}
+main{
+  margin-top: 50px;
+}
+footer{
+  color: $med-blue;
+  margin: 50px 0 0;
+  padding: 10px 0 3px;
+}
+.modal-content{
+  border-radius: 10px;
+  .modal-header{
+    font-weight: 600;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+#errors-modal{
+  .modal-content{
+    background-color: #9C3030;
+    .modal-header{
+      background-color: #2C070D;
+    }
+  }
 }

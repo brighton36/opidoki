@@ -1,0 +1,12 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th Label
+      %th Closes At
+      %th Url
+  %tbody
+    - broadcasts.each do |broadcast|
+      %tr
+        %td=broadcast.label
+        %td=broadcast.closes_at
+        %td=broadcast.url

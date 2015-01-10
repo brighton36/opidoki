@@ -1,6 +1,19 @@
-= form_for @broadcast do |f|
-  = f.text_field :title, :placeholder => 'Title of Oracle'
-  = f.datetime_field :date, :placeholder => 'Date to check'
-  = f.text_area :content, :placeholder => 'Content to check'
-  = f.submit
-  
+%header
+  .container
+    .row
+      .col-md-5
+        %h1.text-center
+          .title
+            OpiDoki: 
+          Truth Made Easy. Because fuck them, that's why.
+        =image_tag 'logo.png', :class => 'text-center'
+        %h1.text-center Evaluate. Broadcast. Win.
+      .col-md-5.col-md-offset-1.form
+        = render partial: 'form', locals: {broadcast: @broadcast}
+%main
+  .container
+    %h2 Upcoming Broadcasts
+    =render partial: 'table', locals: {broadcasts: @upcoming}
+  .container
+    %h2 Expired Broadcasts
+    =render partial: 'table', locals: {broadcasts: @expired}
