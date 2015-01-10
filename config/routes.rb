@@ -1,4 +1,13 @@
 Opidoki::Application.routes.draw do
+
+  root 'broadcasts#index'
+
+  resource :broadcasts do
+#    get 'show/:id' => 'show'
+#    get 'upcoming' => 'list-upcoming'
+#    get 'expired'  => 'list-expired'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
