@@ -16,5 +16,8 @@
 //= require jquery.form
 //= require bootstrap-datetimepicker
 //= require bootstrap-sprockets
+//= require qrcode
+//= require jquery.qrcode
+//= require bitcoinqrcode
 //= require turbolinks
 //= require_tree .
