@@ -2,7 +2,7 @@
   %h1 Create a Truth
   .input-group
     = f.text_field :label, :placeholder => 'Title of broadcast', :class => 'form-control'
-    = f.datetime_field :closes_at, :placeholder => 'Date to be closed', :class => 'form-control'
+    = f.datetime_field :closes_at, :placeholder => 'Date to be closed', :class => 'form-control pull-left'
     = select_tag "closes_at[zone]", options_for_select(ActiveSupport::TimeZone.all.collect {|p| [ p.to_s, p.utc_offset ]}), :class => 'form-control'
     = f.text_field :url, :placeholder => 'Url', :class => 'form-control'
 
@@ -19,8 +19,9 @@
         #regex.tab-pane{:role => 'tabpanel'}
           = f.text_area :match_regex, :placeholder => 'Regex', :rows => '6', :class => 'form-control'
         .include-jquery
-          = f.check_box :include_jquery
+          = f.check_box :include_jquery, :checked => 'checked'
           = f.label :include_jquery, 'Include JQuery'
 
-    .row
+    .row.btn-row
       = f.submit 'Create', :class => 'btn-lg btn-primary submit'
+      %i.fa-li.fa.fa-spinner.fa-spin>

@@ -46,18 +46,39 @@ header{
     margin: 20px;
   }
   .form{
+    position:relative;
+
     select, input, textarea{
       border-radius: 6px!important;
       margin: 10px 0;
     }
-    .btn-lg{
-      color: #FFF;
-      background-color: #569E3D;
-      background-image: linear-gradient(#79D858, #569E3D);
-      background-repeat: repeat-x;
-      border-color: #4A993E;
-      padding: 8px 40px;
-      margin-left: 15px;
+
+    #closes_at_zone{
+      width: 285px;
+      margin-left: 20px;
+    }
+    #broadcast_closes_at{
+      width: 150px;
+    }
+    .btn-row{
+      position:relative;
+      .btn-lg{
+        color: #FFF;
+        background-color: #569E3D;
+        background-image: linear-gradient(#79D858, #569E3D);
+        background-repeat: repeat-x;
+        border-color: #4A993E;
+        padding: 8px 40px;
+        margin-left: 15px;
+      }
+      .fa-spinner{
+        display:none;
+        position: absolute;
+        top: 22px;
+        left: 18px;
+        text-shadow: none;
+        font-size: 20px;
+      }
     }
     .include-jquery{
       text-shadow:none;
