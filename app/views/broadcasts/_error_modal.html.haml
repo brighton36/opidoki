@@ -1,0 +1,8 @@
+#errors-modal.modal.fade{:role => 'dialog', :aria_labelledby => 'Your Truth is flawed', :aria_hidden => 'true'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Your Truth is flawed!
+      .modal-body
