@@ -108,6 +108,11 @@ eos
     # TODO
   end
 
+  def closes_at_from_params!( params )
+    self.closes_at = Time.zone.parse '%s %3.0f' % [params[:time], 
+      params[:zone].to_f / 3600 * 100]
+  end
+
   private
 
   def execute_truther(browser)

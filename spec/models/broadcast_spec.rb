@@ -37,6 +37,20 @@ RSpec.describe Broadcast do
     pending
   end
 
+  context "set zone from params" do 
+    subject do
+      broadcast = Broadcast.new(
+        {"label"=>"Testing", "url"=>"", "match_javascript"=>"", 
+         "match_regex"=>"", "include_jquery"=>"1"})
+      broadcast.closes_at_from_params!( HashWithIndifferentAccess.new({"time"=>"2015-01-15 14:30", "zone"=>"-18000"}) )
+      broadcast
+    end
+
+    its(:closes_at){should eq(DateTime.new(2015,1,15,19,30,00,'0'))}
+
+    # TODO: Verify the zone sets correctly
+  end
+
   context ".initialize" do
     before(:all) { @broadcast = expired_jets_game }
     subject{ @broadcast }
