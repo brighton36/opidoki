@@ -1,10 +1,11 @@
 = form_for @broadcast do |f|
   %h1 Create a Truth
   .input-group
-    = f.text_field :label, :placeholder => 'Title of broadcast', :class => 'form-control'
-    = f.datetime_field :closes_at, :placeholder => 'Date to be closed', :class => 'form-control pull-left'
-    = select_tag "broadcast[closes_at(zone)]", options_for_select(ActiveSupport::TimeZone.all.collect {|p| [ p.to_s, p.utc_offset ]}), :class => 'form-control'
-    = f.text_field :url, :placeholder => 'Url', :class => 'form-control'
+    = f.text_field :label, :placeholder => "What's the name of this Broadcast?", :class => 'form-control'
+    %input#broadcast_closes_at.form-control.pull-left{:name => "closes_at(time)", :placeholder => "Date/Time to be closed", :type => "datetime"}/
+    = select_tag "closes_at(zone)", options_for_select(ActiveSupport::TimeZone.all.collect {|p| [ p.to_s, p.utc_offset ]}), :class => 'form-control'
+    = f.text_field :url, :placeholder => 'Full URL', :class => 'form-control'
+    = f.text_field :url, :placeholder => 'Full URL (ie. https://news.google.com)', :class => 'form-control'
 
     %div{:role => 'tabpanel'}
       %ul.nav.nav-tabs{:role => 'tablist'}

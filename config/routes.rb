@@ -4,7 +4,7 @@ Opidoki::Application.routes.draw do
 
   get '/broadcasts/upcoming', to: 'broadcasts#list_upcoming'
   get '/broadcasts/expired',  to: 'broadcasts#list_expired'
-  get '/broadcasts/:id(.:format)', to: 'broadcasts#show'
+  get '/broadcasts/:id(.:format)', to: 'broadcasts#show', as: 'broadcast'
 
   root 'broadcasts#index'
   # The priority is based upon order of creation: first created -> highest priority.

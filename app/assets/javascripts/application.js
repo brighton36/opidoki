@@ -11,12 +11,18 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
+
+//= require jquery-ui/core
+//= require jquery-ui/datepicker
+//
 //= require jquery_ujs
 //= require jquery.form
+
+//= require bootstrap/modal
 //= require bootstrap-datetimepicker
-//= require bootstrap-sprockets
+
 //= require qrcode
 //= require jquery.qrcode
+//= require highlight.pack
 //= require turbolinks
 //= require_tree .

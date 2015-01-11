@@ -128,8 +128,9 @@ eos
   end
 
   def generate_oracle_address
-    bitcoin = Bitcoin::Client.new(BITCOIN_CONFIG['user'], BITCOIN_CONFIG['pass'], 
-      :host => BITCOIN_CONFIG['host'], :port => BITCOIN_CONFIG['port'])
-    self.btc_public_address = bitcoin.getnewaddress
+    'mh6SNGA3HtusbeysegUFDQxBAJiRNBuopZ'
+#    bitcoin = Bitcoin::Client.new(BITCOIN_CONFIG['user'], BITCOIN_CONFIG['pass'], 
+#      :host => BITCOIN_CONFIG['host'], :port => BITCOIN_CONFIG['port'])
+#    self.btc_public_address = bitcoin.getnewaddress
   end
 end

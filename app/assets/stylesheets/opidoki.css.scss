@@ -26,10 +26,13 @@ nav{
 }
 header{
   color: $white;
-  background: image-url('header-bg.png') repeat;
+  background: image-url('temple2.png') repeat;
   min-height: 400px;
   padding: 25px 0 50px;
   text-shadow: 1px 1px 1px $black!important;
+  h1{
+    font-weight:400
+  }
   img{
     width: 75%;
     margin: 15px 0 0;
@@ -37,7 +40,7 @@ header{
   }
   .title{
     display:inline-block;
-    font-weight: 400;
+    font-weight: bold;
   }
   .qrcode-container{
     background-color: $white;
@@ -52,8 +55,9 @@ header{
       border-radius: 6px!important;
       margin: 10px 0;
     }
+    select{padding-left:0}
 
-    #closes_at_zone{
+    #closes_at_zone_{
       width: 285px;
       margin-left: 20px;
     }
@@ -134,14 +138,26 @@ footer{
   padding: 10px 0 3px;
 }
 
+.modal{
+  color: $white
+}
+.modal-dialog{
+  width: 500px;
+}
+.modal .close{
+  color: $white;
+  opacity: 1;
+}
 .modal-content{
   border-radius: 10px;
   .modal-header{
     font-weight: 600;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    padding-left: 15px;
   }
   .modal-title{
+    font-size: 25px;
     font-weight:600!important;
   }
 }
@@ -153,6 +169,11 @@ footer{
       color: $white;
       font-weight:600!important;
       background-color: #2C070D;
+    }
+    ul.errors{
+      margin: 0;
+      padding: 0 0 0 25px;
+      font-size: 18px;
     }
   }
 }

@@ -1,0 +1,30 @@
+%main
+  .container
+    .col-md-5
+      =image_tag 'http://placehold.it/400x600'
+    .col-md-7
+      %h1=@broadcast.label
+      %h3
+        %strong Opened at
+        =": %s" % [@broadcast.opened_at]
+      %h3
+        %strong Closes at
+        =": %s" % [@broadcast.closes_at]
+      %h3
+        %strong BTC Address
+        =": %s" % [@broadcast.btc_public_address]
+      %h3
+        %strong URL
+        =": %s" % [@broadcast.url]
+      - case @broadcast.match_type
+      - when 1
+        %h3
+          %strong Match Regex
+        %pre.regex
+          = @broadcast.match_regex
+      - when 2
+        %h3
+          %strong Match Javascript
+        %pre.javascript
+          %code
+            = @broadcast.match_javascript

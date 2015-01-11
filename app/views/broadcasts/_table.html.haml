@@ -7,6 +7,6 @@
   %tbody
     - broadcasts.each do |broadcast|
       %tr
-        %td=broadcast.label
+        %td=link_to broadcast.label, broadcast_path(broadcast.id)
         %td=broadcast.closes_at
         %td=broadcast.url
