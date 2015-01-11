@@ -41,6 +41,7 @@ Broadcast.new(
 Broadcast.new(
   :label => 'Dallas Cowboys At Green Bay Jan 11 @ 1:05 EST. 1=Dallas Win; 2=Greenbay Win;',
   
+  :btc_public_address => '1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs',
   # Mark it open:
   :is_opened => true,
   :is_funded => true,
@@ -68,6 +69,7 @@ Broadcast.new(
 Broadcast.new(
   :label => 'Indianapolis At Denver Jan 11 @ 4:40 EST. 1=Indianapolis Win; 2=Denver;',
   
+  :btc_public_address => '1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs',
   # Mark it open:
   :is_opened => true,
   :is_funded => true,

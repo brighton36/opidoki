@@ -1,7 +1,5 @@
 $('document').ready ->
-  if $('code').length > 0
-    hljs.initHighlightingOnLoad()
-
+  hljs.initHighlightingOnLoad()
 
   if $('#new_broadcast').length > 0
     document.forms['new_broadcast'].reset()

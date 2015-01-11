@@ -19,6 +19,7 @@
 //= require jquery.form
 
 //= require bootstrap/modal
+//= require bootstrap/tab
 //= require bootstrap-datetimepicker
 
 //= require qrcode
