@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150110134641) do
     t.string   "btc_public_address"
     t.string   "btc_open_txid"
     t.string   "btc_close_txid"
-    t.integer  "match_type"
+    t.integer  "match_type",                        default: 2
     t.text     "url"
     t.text     "match_javascript"
     t.text     "match_regex"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20150110134641) do
     t.string   "execution_screenshot_content_type"
     t.integer  "execution_screenshot_file_size"
     t.datetime "execution_screenshot_updated_at"
-    t.boolean  "include_jquery"
-    t.boolean  "is_opened"
-    t.boolean  "is_closed"
-    t.boolean  "is_funded"
+    t.boolean  "include_jquery",                    default: true
+    t.boolean  "is_opened",                         default: false
+    t.boolean  "is_closed",                         default: false
+    t.boolean  "is_funded",                         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

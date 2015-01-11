@@ -34,7 +34,12 @@ RSpec.describe Broadcast do
   end
   
   context "defaults" do 
-    pending
+    subject{ Broadcast.new }
+    its(:match_type){ should eq(Broadcast::MATCH_TYPE_JAVASCRIPT) }
+    its(:include_jquery){ should eq(true) }
+    its(:is_opened){ should eq(false) }
+    its(:is_closed){ should eq(false) }
+    its(:is_funded){ should eq(false) }
   end
 
   context "set zone from params" do 
@@ -47,8 +52,6 @@ RSpec.describe Broadcast do
     end
 
     its(:closes_at){should eq(DateTime.new(2015,1,15,19,30,00,'0'))}
-
-    # TODO: Verify the zone sets correctly
   end
 
   context ".initialize" do

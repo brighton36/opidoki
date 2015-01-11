@@ -105,7 +105,7 @@ eos
   end
 
   def ask_bitcoin_if_funded?
-    # TODO
+    bitcoin_client.getreceivedbyaddress(self.btc_public_address, 0).try(:>, 0.001)
   end
 
   def closes_at_from_params!( params )
@@ -127,10 +127,12 @@ eos
     end
   end
 
+  def bitcoin_client
+    Bitcoin::Client.new(BITCOIN_CONFIG['user'], BITCOIN_CONFIG['pass'], 
+      :host => BITCOIN_CONFIG['host'], :port => BITCOIN_CONFIG['port'])
+  end
+
   def generate_oracle_address
-    'mh6SNGA3HtusbeysegUFDQxBAJiRNBuopZ'
-#    bitcoin = Bitcoin::Client.new(BITCOIN_CONFIG['user'], BITCOIN_CONFIG['pass'], 
-#      :host => BITCOIN_CONFIG['host'], :port => BITCOIN_CONFIG['port'])
-#    self.btc_public_address = bitcoin.getnewaddress
+    self.btc_public_address = bitcoin_client.getnewaddress
   end
 end
