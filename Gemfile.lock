@@ -1,9 +1,11 @@
 GIT
-  remote: https://github.com/sinisterchipmunk/bitcoin-client
-  revision: 33a5ac809d8b1535065dc4037bae639e6c24da1b
+  remote: https://github.com/brighton36/counterparty_ruby
+  revision: a2994dc68b1bf33604eab77494a17b64bd465fef
   specs:
-    bitcoin-client (0.0.3)
-      rest-client
+    counterparty_ruby (0.9.0)
+      bitcoin-ruby
+      ffi
+      rest_client
 
 GEM
   remote: https://rubygems.org/
@@ -33,6 +35,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bitcoin-ruby (0.0.6)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     builder (3.1.4)
@@ -87,7 +90,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
-    netrc (0.10.2)
+    netrc (0.7.9)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -113,9 +116,8 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    rest-client (1.7.2)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
+    rest_client (1.8.2)
+      netrc (~> 0.7.7)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -186,9 +188,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bitcoin-client!
   bootstrap-sass (~> 3.3.1)
   coffee-rails (~> 4.0.0)
+  counterparty_ruby!
   font-awesome-rails
   haml
   haml-rails

@@ -1,5 +1,5 @@
 require 'watir-webdriver'
-require 'bitcoin-client'
+require Rails.root.join('lib/ghetto_bitcoin_client')
 
 class Broadcast < ActiveRecord::Base
   BITCOIN_CONFIG = YAML.load File.open(Rails.root.join('config','bitcoind.yml'))
@@ -128,8 +128,7 @@ eos
   end
 
   def bitcoin_client
-    BitcoinClient::Client.new(BITCOIN_CONFIG['user'], BITCOIN_CONFIG['pass'], 
-      :host => BITCOIN_CONFIG['host'], :port => BITCOIN_CONFIG['port'])
+    GhettoBitcoinClient.new BITCOIN_CONFIG
   end
 
   def generate_oracle_address
