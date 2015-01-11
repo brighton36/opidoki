@@ -59,4 +59,4 @@ gem "rspec-its", :group => [:development, :test]
 
 gem "watir"
 gem 'paperclip'
-gem 'bitcoin-client'
+gem 'bitcoin-client', :git => 'https://github.com/sinisterchipmunk/bitcoin-client'

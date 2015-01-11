@@ -128,7 +128,7 @@ eos
   end
 
   def bitcoin_client
-    Bitcoin::Client.new(BITCOIN_CONFIG['user'], BITCOIN_CONFIG['pass'], 
+    BitcoinClient::Client.new(BITCOIN_CONFIG['user'], BITCOIN_CONFIG['pass'], 
       :host => BITCOIN_CONFIG['host'], :port => BITCOIN_CONFIG['port'])
   end
 
