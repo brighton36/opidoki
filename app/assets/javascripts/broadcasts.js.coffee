@@ -66,5 +66,5 @@ checkFunding = (id) ->
   })
   setTimeout ( ->
     checkFunding(id)
-  ), 2000
+  ), 5000
 

@@ -1,4 +1,5 @@
 # Expired Broadcasts:
+=begin
 Broadcast.new(
    # Entered into the system at 12/20 at Noon:
   :opened_at => DateTime.new(2014,12,20,12,00,00,'-5'),
@@ -25,7 +26,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'NY Jets\')))")).has(".home .team:has(em:contains(\'Miami\'))")
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     visitor_score = parseInt(scores[0]);
     home_score = parseInt(scores[1]);
 
@@ -34,6 +35,7 @@ Broadcast.new(
     // There was an error, or a tie. Unresolvable:
     else { return 0; }'
 ).save!
+=end
 
 Broadcast.new(
    # Entered into the system at 12/20 at Noon:
@@ -61,7 +63,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'New England\')))")).has(".home .team:has(em:contains(\'Miami\'))")
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     visitor_score = parseInt(scores[0]);
     home_score = parseInt(scores[1]);
 
@@ -97,7 +99,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'Miami\')))")).has(".home .team:has(em:contains(\'Buffalo\'))")
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     visitor_score = parseInt(scores[0]);
     home_score = parseInt(scores[1]);
 
@@ -133,7 +135,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'Kansas City\')))")).has(".home .team:has(em:contains(\'Miami\'))")
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     visitor_score = parseInt(scores[0]);
     home_score = parseInt(scores[1]);
 
@@ -169,7 +171,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'NY Jets\')))")).has(".home .team:has(em:contains(\'Miami\'))")[0]
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     visitor_score = parseInt(scores[0]);
     home_score = parseInt(scores[1]);
 
@@ -205,7 +207,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'Miami\')))")).has(".home .team:has(em:contains(\'Philadelphia\'))")[0]
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     visitor_score = parseInt(scores[0]);
     home_score = parseInt(scores[1]);
 
@@ -234,7 +236,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'Detroit\')))")).has(".home .team:has(em:contains(\'Dallas\'))")
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     dallas_score = parseInt(scores[0]);
     greenbay_score = parseInt(scores[1]);
 
@@ -262,7 +264,7 @@ Broadcast.new(
   :match_javascript => '
     game_cell = $($(".game:has(.away .team:has(em:contains(\'Indianapolis\')))")).has(".home .team:has(em:contains(\'Denver\'))")
 
-    scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
+    scores = $(game_cell).find(\'.score\').text().trim().match(/[0-9]+/g);
     indianapolis_score = parseInt(scores[0]);
     denver_score = parseInt(scores[1]);
 
@@ -300,7 +302,7 @@ Broadcast.new(
 
 # http://bcpa.net/RecInfo.asp?URL_Folio=494235010040
 Broadcast.new(
-  :label => 'Will Arian convince Chris to sell him his property Jan 12? 1=Yes; 2=No',
+  :label => 'Has BCPA been Transfered the cderose Deed to Aamador on Jan 12? 1=Yes; 2=No',
   
   :btc_public_address => '1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs',
   # Mark it open:

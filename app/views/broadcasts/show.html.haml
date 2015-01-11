@@ -20,6 +20,10 @@
         %h3.closed-at
           %strong Closed at:
           =@broadcast.closed_at
+      - if @broadcast.closed_at && @broadcast.execution_return
+        %h3.execution-return
+          %strong Resolved to:
+          =@broadcast.execution_return.inspect
       - else
         %h3.closes-at
           %strong Closes at:

@@ -9,6 +9,7 @@ namespace :opidoki do
       # Check for funding, and mark funding
       Broadcast.unfunded.each do |broadcast|
         begin
+          puts broadcast.inspect
           broadcast.is_funded = true if broadcast.ask_bitcoin_if_funded?
           broadcast.save!
         rescue #RestClient::InternalServerError
@@ -17,7 +18,8 @@ namespace :opidoki do
       end
 
       # Check for is_funded and open transaction
-      Broadcast.requiring_open do |broadcast| 
+      Broadcast.requiring_open.each do |broadcast| 
+        puts "Open:"+broadcast.inspect
         begin
           broadcast.open_broadcast!
         rescue
@@ -26,8 +28,9 @@ namespace :opidoki do
       end
 
       # Check for closes_at and close transaction
-      Broadcast.requiring_close(now) do |broadcast| 
+      Broadcast.requiring_close(now).each do |broadcast| 
         begin
+          puts "Close:"+broadcast.inspect
           broadcast.close_broadcast!
         rescue
           next

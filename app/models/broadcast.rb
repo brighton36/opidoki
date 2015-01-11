@@ -89,12 +89,14 @@ eos
     browser = Watir::Browser.new :phantomjs
     browser.goto url
 
+    puts "Here 1"
     # Get the screenshot:
     screen_tmp = Tempfile.new(['opiscreen', '.png'])
     screen_tmp.close
     screen_tmp.open
     browser.screenshot.save screen_tmp.path
 
+    puts "Here 2"
     # Mutate State:
     self.execution_return = execute_truther browser
     self.is_closed = true
@@ -102,6 +104,7 @@ eos
     self.execution_screenshot = screen_tmp
     self.execution_title = browser.title
 
+    puts "Here 3"
     # Cp Broadcast
     if Rails.env.test?
       self.btc_close_txid  = "TODO: I'm lazy,and its a hackathon"
@@ -114,6 +117,7 @@ eos
         allow_unconfirmed_inputs: true ).save!
     end
     
+    puts "Here 4"
     # Persist the model:
     self.save!
 
@@ -125,7 +129,9 @@ eos
   end
 
   def ask_bitcoin_if_funded?
-    bitcoin_client.getreceivedbyaddress(self.btc_public_address, 0).try(:>, 0.001)
+    ret = bitcoin_client.getreceivedbyaddress(self.btc_public_address, 0).try(:>, 0.00001)
+    puts "Pbulic: %s" % [self.btc_public_address.inspect, ret.inspect]
+    ret
   end
 
   def closes_at_from_params!( params )
@@ -136,13 +142,20 @@ eos
   private
 
   def execute_truther(browser)
+    puts "In truth"
     if match_type == MATCH_TYPE_JAVASCRIPT
+      puts "In js"
       browser.execute_script INCLUDE_JQUERY_SCRIPT if self.include_jquery
+ puts "Pre sleep"
       sleep 1 # Yeah it's hacky, but this is a hackathon.
       
-      browser.execute_script match_javascript
+ puts "Post executue: "
+      ret = browser.execute_script match_javascript
+ puts "Ret: "+ret.inspect
+      ret
     elsif match_type == MATCH_TYPE_REGEX
       # TODO:
+      puts "In regex"
       nil
     end
   end
