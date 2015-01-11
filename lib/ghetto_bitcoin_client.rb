@@ -15,9 +15,14 @@ class GhettoBitcoinClient
     request 'getnewaddress'
   end
 
+  def validateaddress(address)
+    request 'validateaddress', address
+  end
+
   def connection_url
     'http://%s:%s@%s:%s' % [@user, @pass, @host, @port]
   end
+
 
   private 
 

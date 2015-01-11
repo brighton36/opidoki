@@ -64,8 +64,19 @@ eos
   end
 
   def open_broadcast!
-    # TODO: CP Broadcast
-    self.btc_open_txid = 'TODO : From CP'
+    # Announce the availability of a Bet:
+
+    # NOTE: All times are in UTC
+    if Rails.env.test?
+      self.btc_open_txid = "TODO: I'm lazy,and its a hackathon"
+    else
+      pubkey = bitcoin_client.validateaddress(self.btc_public_address)['pubkey']
+      self.btc_open_txid = Counterparty::Broadcast.new( source: self.btc_public_address, 
+        value: Counterparty::Broadcast::OPEN_BROADCAST, timestamp: Time.now.to_i,
+        text: self.short_label, fee_fraction: 0.00, pubkey: pubkey, 
+        allow_unconfirmed_inputs: true ).save!
+    end
+
     self.save!
   end
 
@@ -84,16 +95,25 @@ eos
     screen_tmp.open
     browser.screenshot.save screen_tmp.path
 
-    # TODO : Cp Broadcast
-    
     # Mutate State:
     self.execution_return = execute_truther browser
-    self.btc_close_txid = 'TODO : From CP'
     self.is_closed = true
     self.closed_at = Time.now
     self.execution_screenshot = screen_tmp
     self.execution_title = browser.title
 
+    # Cp Broadcast
+    if Rails.env.test?
+      self.btc_close_txid  = "TODO: I'm lazy,and its a hackathon"
+    else
+      pubkey = bitcoin_client.validateaddress(self.btc_public_address)['pubkey']
+
+      self.btc_close_txid = Counterparty::Broadcast.new( source: self.btc_public_address, 
+        value: self.execution_return, timestamp: Time.now.to_i, 
+        fee_fraction: 0.00, text: self.short_label, pubkey: pubkey,
+        allow_unconfirmed_inputs: true ).save!
+    end
+    
     # Persist the model:
     self.save!
 

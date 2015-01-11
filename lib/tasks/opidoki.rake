@@ -8,8 +8,12 @@ namespace :opidoki do
 
       # Check for funding, and mark funding
       Broadcast.unfunded.each do |broadcast|
-        broadcast.is_funded = true if broadcast.ask_bitcoin_if_funded?
-        broadcast.save!
+        begin
+          broadcast.is_funded = true if broadcast.ask_bitcoin_if_funded?
+          broadcast.save!
+        rescue RestClient::InternalServerError
+          next
+        end
       end
 
       # Check for is_funded and open transaction
