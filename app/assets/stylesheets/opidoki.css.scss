@@ -48,6 +48,9 @@ header{
     padding: 10px 0px 10px 10px;
     margin: 20px;
   }
+
+  #address{ font-weight: bold;}
+
   .form{
     position:relative;
 
@@ -57,7 +60,7 @@ header{
     }
     select{padding-left:0}
 
-    #closes_at_zone_{
+    #closes_at_zone{
       width: 285px;
       margin-left: 20px;
     }

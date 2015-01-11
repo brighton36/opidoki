@@ -1,44 +1,50 @@
 class BroadcastsController < ApplicationController
   def index
+    now = Time.now
+
     @broadcast = Broadcast.new
-    @upcoming = Broadcast.all
-    @expired = Broadcast.all
+    @upcoming = Broadcast.upcoming(now).order('closes_at DESC')
+    @expired = Broadcast.expired(now).order('closes_at DESC')
   end
 
-  #TODO Use scopes.
   def list_upcoming
-    @upcoming = Broadcast.all
+    @upcoming = Broadcast.upcoming(Time.now).order('closes_at DESC')
   end
 
-  #TODO Use scopes.
   def list_expired
-    @expired = Broadcast.all
+    @expired = Broadcast.expired(Time.now).order('closes_at DESC')
   end
 
   def create
     #TODO: finish closes_at with time zones
     begin
-      broadcast = Broadcast.new(broadcast_params)
+      broadcast = Broadcast.new broadcast_params
+
+=begin
       broadcast.match_type = 0
       
+      # Huh?
       closes_at_params = {
         time: params["closes_at(time)"],
         zone: params["closes_at(zone)"]
       }
 
-      broadcast.closes_at_from_params! closes_at_params
-
       #TODO: Remove this...
       broadcast.btc_public_address = 'mh6SNGA3HtusbeysegUFDQxBAJiRNBuopZ'
 
-      broadcast.match_type = 1 if !broadcast.match_regex.empty? && broadcast.match_javascript.empty?
-      broadcast.match_type = 2 if !broadcast.match_javascript.empty? && broadcast.match_regex.empty?
+=end
+
+      broadcast.closes_at_from_params! params[:closes_at]
+
+      # It's sloppy, but it's also 5:00 A
+      broadcast.match_type = (!broadcast.match_javascript.empty?) ? 
+        Broadcast::MATCH_TYPE_JAVASCRIPT : Broadcast::MATCH_TYPE_REGEX
 
       broadcast.save!
 
       render :json => {
         broadcast: broadcast,
-        amount: "0.0036", # in BTC $1 USD
+        amount: "0.0015", # in BTC $1 USD
         label: 'opidoki'
       }, status: 200
     rescue ActiveRecord::RecordInvalid => invalid

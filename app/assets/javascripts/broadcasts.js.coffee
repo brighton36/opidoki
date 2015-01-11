@@ -5,7 +5,7 @@ $('document').ready ->
     document.forms['new_broadcast'].reset()
 
     # Select EST as default TimeZone
-    $("#closes_at_zone_ option:contains('(GMT-05:00) Eastern Time (US & Canada)')").each ->
+    $("#closes_at_zone option:contains('(GMT-05:00) Eastern Time (US & Canada)')").each ->
       $(this).attr "selected", "selected"
       return false
     
