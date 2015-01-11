@@ -1,30 +1,50 @@
 %main
-  .container
+  .container.show-broadcast
     .col-md-5
-      =image_tag 'http://placehold.it/400x600'
+      - if @broadcast.execution_screenshot_file_name
+        =link_to image_tag(@broadcast.execution_screenshot.url, :alt => @broadcast.label), @broadcast.execution_screenshot.url
+      - else
+        =image_tag 'pending-execution.png'
     .col-md-7
       %h1=@broadcast.label
-      %h3
-        %strong Opened at
-        =": %s" % [@broadcast.opened_at]
-      %h3
-        %strong Closes at
-        =": %s" % [@broadcast.closes_at]
-      %h3
-        %strong BTC Address
-        =": %s" % [@broadcast.btc_public_address]
-      %h3
-        %strong URL
-        =": %s" % [@broadcast.url]
+      - if @broadcast.opened_at
+        %h3.opened-at
+          %strong Opened at:
+          =@broadcast.opened_at
+      - if @broadcast.btc_open_txid
+        %h3.open-broadcast
+          %strong Open Broadcast:
+          = link_to 'blockchain.info', "%s%s" % ['https://blockchain.info/tx/', @broadcast.btc_open_txid], :target => '_blank'
+          = link_to 'blockscan.com', "%s%s" % ['http://www.blockscan.com/tx?txhash=', @broadcast.btc_open_txid], :target => '_blank'
+      - if @broadcast.closed_at
+        %h3.closed-at
+          %strong Closed at:
+          =@broadcast.closed_at
+      - else
+        %h3.closes-at
+          %strong Closes at:
+          =@broadcast.closes_at
+      - if @broadcast.btc_close_txid
+        %h3.open-broadcast
+          %strong Closed Broadcast:
+          = link_to 'blockchain.info', "%s%s" % ['https://blockchain.info/tx/', @broadcast.btc_close_txid], :target => '_blank'
+          = link_to 'blockscan.com', "%s%s" % ['http://www.blockscan.com/tx?txhash=', @broadcast.btc_close_txid], :target => '_blank'
+
+      %h3.oracle-address
+        %strong Feed Address:
+        =@broadcast.btc_public_address
+      %h3.url
+        %strong URL:
+        =@broadcast.url
       - case @broadcast.match_type
       - when 1
-        %h3
-          %strong Match Regex
+        %h3.match-regex
+          %strong Match Regex:
         %pre.perl
           = @broadcast.match_regex
       - when 2
-        %h3
-          %strong Match Javascript
+        %h3.match-javascript
+          %strong Match Javascript:
         %pre.javascript
           %code
             = @broadcast.match_javascript

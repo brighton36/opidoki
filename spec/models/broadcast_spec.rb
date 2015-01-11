@@ -21,7 +21,7 @@ RSpec.describe Broadcast do
       :match_type => Broadcast::MATCH_TYPE_JAVASCRIPT,
       :include_jquery => true,
       :match_javascript => '
-        game_cell = $($(".game:has(.away .team:has(em:contains(\'NY Jets\')))")).has(".home .team:has(em:contains(\'Miami\'))")
+        game_cell = $($(".game:has(.away .team:has(em:contains(\'NY Jets\')))")).has(".home .team:has(em:contains(\'Miami\'))");
 
         scores = $(game_cell).find(\'.score\').text().trim().match(/\d+/g);
         visitor_score = parseInt(scores[0]);

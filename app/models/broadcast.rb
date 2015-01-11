@@ -36,7 +36,7 @@ eos
   scope :funded, lambda{ where('is_funded = ?', true) }
 
   # Open Broadcast is sent:
-  scope :unopened, lambda{ where('is_opened = ? AND is_closed = ?', false) }
+  scope :unopened, lambda{ where('is_opened = ?', false) }
 
   # Open Broadcast is sent:
   scope :opened, lambda{ where( 'is_opened = ? AND is_closed = ?', true, false) }
@@ -48,7 +48,7 @@ eos
   scope :upcoming, lambda{ |now| funded.opened.where('closes_at >= ?', now) }
 
   # These have succesfully completed
-  scope :expired, lambda{ |now| funded.closed.where('closes_at <= ?', now) }
+  scope :expired, lambda{ |now| funded.closed }
 
   # Needs to be processed
   scope :requiring_open, lambda{funded.unopened}
@@ -59,8 +59,7 @@ eos
   before_validation(on: :create){ generate_oracle_address }
 
   def short_label
-    # TODO: Let's just use a json url
-    label[0...46]+'...'
+    'http://www.opidoki.com/broadcasts/%s' % id
   end
 
   def open_broadcast!
@@ -76,6 +75,7 @@ eos
         text: self.short_label, fee_fraction: 0.00, pubkey: pubkey, 
         allow_unconfirmed_inputs: true ).save!
     end
+    self.is_opened = true
 
     self.save!
   end

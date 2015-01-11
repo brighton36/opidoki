@@ -16,23 +16,8 @@ class BroadcastsController < ApplicationController
   end
 
   def create
-    #TODO: finish closes_at with time zones
     begin
       broadcast = Broadcast.new broadcast_params
-
-=begin
-      broadcast.match_type = 0
-      
-      # Huh?
-      closes_at_params = {
-        time: params["closes_at(time)"],
-        zone: params["closes_at(zone)"]
-      }
-
-      #TODO: Remove this...
-      broadcast.btc_public_address = 'mh6SNGA3HtusbeysegUFDQxBAJiRNBuopZ'
-
-=end
 
       broadcast.closes_at_from_params! params[:closes_at]
 
@@ -44,7 +29,7 @@ class BroadcastsController < ApplicationController
 
       render :json => {
         broadcast: broadcast,
-        amount: "0.0015", # in BTC $1 USD
+        amount: "0.0007", # in BTC $1 USD
         label: 'opidoki'
       }, status: 200
     rescue ActiveRecord::RecordInvalid => invalid

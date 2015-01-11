@@ -134,6 +134,18 @@ header{
 }
 main{
   margin-top: 50px;
+  .open-broadcast{
+    a{
+      font-size: 20px;margin: 0 0 0 15px;
+    }
+  }
+  .show-broadcast{
+    img{
+      border: 1px solid #CCC;
+      margin-top: 25px;
+      width: 100%;
+    }
+  }
 }
 footer{
   color: $med-blue;
