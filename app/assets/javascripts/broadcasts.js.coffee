@@ -15,6 +15,7 @@ $('document').ready ->
     success: (plainObject, xhrStatus, xhr) ->
       response = jQuery.parseJSON(xhr.responseText)
 
+      broadcastId = response.broadcast.id
       address = response.broadcast.btc_public_address
       amount = response.amount
       label = response.label
@@ -33,6 +34,7 @@ $('document').ready ->
         setTimeout ( ->
           $('.fa-spinner').hide()
           $('.flip-container').addClass('hover')
+          checkFunding broadcastId
         ), 1500
       else
         $('#errors-modal .modal-body').html('')
@@ -40,3 +42,21 @@ $('document').ready ->
         $('#errors-modal').modal()
       false
   })
+
+checkFunding = (id) ->
+  isFunded = false
+
+  $.ajax({
+    url: "/broadcasts/#{id}",
+    dataType: 'json',
+    success: (plainObject, xhrStatus, xhr) ->
+      response = jQuery.parseJSON(xhr.responseText)
+      console.log response.broadcast
+      isFunded = true if response.broadcast is "true"
+      # TODO: Redirect to show
+  })
+  console.log isFunded
+  setTimeout ( ->
+    checkFunding(id) unless isFunded
+  ), 2000
+

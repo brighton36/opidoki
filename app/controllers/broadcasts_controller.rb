@@ -14,8 +14,6 @@ class BroadcastsController < ApplicationController
       @broadcast.btc_public_address = 'mh6SNGA3HtusbeysegUFDQxBAJiRNBuopZ'
       @broadcast.save!
 
-      logger.info @broadcast.inspect
-
       render :json => {
         broadcast:  @broadcast,
         amount: "0.0036", # in BTC $1 USD
@@ -37,7 +35,7 @@ class BroadcastsController < ApplicationController
       format.html
       format.json {
         render :json => {
-          broadcast: @broadcast.to_json
+          broadcast: @broadcast.is_funded.to_json
         }
       }
     end
@@ -46,6 +44,6 @@ class BroadcastsController < ApplicationController
   private
 
   def broadcast_params 
-    params.require(:broadcast).permit(:label, :closes_at, :creator, :btc_public_address, :match_type, :url, :match_javascript, :match_regex, :include_jquery)
+    params.require(:broadcast).permit(:label, :closes_at, :creator, :btc_public_address, :match_type, :url, :match_javascript, :match_regex, :include_jquer, :is_funded)
   end
 end
