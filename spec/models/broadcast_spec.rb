@@ -10,9 +10,6 @@ RSpec.describe Broadcast do
 
       # User says to close 6 hours after the game:
       :closes_at => DateTime.new(2014,12,28,19,05,00,'-5'),
-      
-      # Baller status:
-      :btc_public_address => '1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs',
 
       # Mark it complete:
       :is_opened => true,
@@ -34,6 +31,24 @@ RSpec.describe Broadcast do
         else if (visitor_score_score < home_score) { return 2; }
         // There was an error, or a tie. Unresolvable:
         else { return 0; }' )
+  end
+  
+  context "defaults" do 
+    pending
+  end
+
+  context "set zone from params" do 
+    subject do
+      broadcast = Broadcast.new(
+        {"label"=>"Testing", "url"=>"", "match_javascript"=>"", 
+         "match_regex"=>"", "include_jquery"=>"1"})
+      broadcast.closes_at_from_params!( HashWithIndifferentAccess.new({"time"=>"2015-01-15 14:30", "zone"=>"-18000"}) )
+      broadcast
+    end
+
+    its(:closes_at){should eq(DateTime.new(2015,1,15,19,30,00,'0'))}
+
+    # TODO: Verify the zone sets correctly
   end
 
   context ".initialize" do
@@ -62,7 +77,7 @@ RSpec.describe Broadcast do
     subject{ @broadcast }
 
     its(:opened_at) { should be_a_kind_of Time }
-    its(:btc_public_address) { should eq('1AeRVukQNG3qhd3i31pwFa7Z8qc6JnkYEs') }
+    its(:btc_public_address) { should be_a_kind_of String }
     its(:btc_open_txid) { should be_a_kind_of String }
 
     its(:persisted?) { should eq(true) }

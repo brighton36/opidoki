@@ -26,6 +26,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bitcoin-client (0.0.3)
+      rest-client
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     builder (3.1.4)
@@ -80,6 +82,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
+    netrc (0.7.9)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -105,6 +108,9 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -175,6 +181,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bitcoin-client
   bootstrap-sass (~> 3.3.1)
   coffee-rails (~> 4.0.0)
   font-awesome-rails

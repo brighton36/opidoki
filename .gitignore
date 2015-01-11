@@ -16,3 +16,5 @@
 /tmp
 *.swp
 *.swo
+config/bitcoind.yml
+public/system/*
